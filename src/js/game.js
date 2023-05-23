@@ -17,7 +17,27 @@ export class Game extends Engine {
         bg.pos = new Vector(400, 300)
         this.add(bg)
 
-        Resources.ThemeSong.play(0.4)
+        for (let x = 0; x < 2; x++) {
+            const tree = new Tree()
+            tree.graphics.use(Resources.Tree.toSprite())
+            tree.pos = new Vector(Math.random()*400 + 300, Math.random()*300 + 200)
+            this.add(tree)
+    
+            const chicken = new Chicken()
+            chicken.graphics.use(Resources.Bird.toSprite())
+            chicken.pos = new Vector(0, -60)
+            tree.addChild(chicken)
+    
+            const hat = new Actor({
+                width: Resources.Hat.width,
+                height: Resources.Hat.height
+            })
+            hat.graphics.use(Resources.Hat.toSprite())
+            hat.pos = new Vector(0, -50)
+            chicken.addChild(hat)
+        }
+
+        // Resources.ThemeSong.play(0.4)
     }
 }
 
